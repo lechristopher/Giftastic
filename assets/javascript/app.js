@@ -3,29 +3,29 @@ var topics = ['Aaron Rodgers', 'Kobe Bryant', 'Marshawn Lynch'];
 
 //Adding Buttons========================================================================
 var addButtons = function() {
-
+    $('#buttonbar').empty(); // empty the bar on add button rather than on click.
 	for (var i=0; i<topics.length; i++) {
 
 		var button = $('<button>');
 			button.attr("data-person", topics[i]);
 			button.html(topics[i]);
 			console.log(topics[i]);
-			
 
-	$('#buttonbar').append(button);			
+
+	$('#buttonbar').append(button);
 	};
-}	
+}
+addButtons(); //generate buttons dynamically from the start
 
-$('#search').on('click', function(event) {	
+$('#search').on('click', function(event) {
 	event.preventDefault()
 
-	$('#buttonbar').empty();
 
 	var userInput = $('#searchbar').val();
 
 	if (userInput !== '') {
 		topics.push(userInput);
-	}	
+	}
 
 	$("#searchbar").val('');
 
@@ -35,7 +35,7 @@ $('#search').on('click', function(event) {
 
 
 //Pulls from Giphy API to prepend 10 Gifs====================================================
-$("document").on("click", "button", function() {
+$(document).on("click", "button", function() {
 
 	var athlete = $(this).attr("data-person");
 	console.log(athlete);
@@ -71,18 +71,18 @@ $("document").on("click", "button", function() {
 				athleteImage.attr("data-still", results[i].images.original_still.url);
 
 				athleteImage.attr("data-animate", results[i].images.original.url);
-					
+
 				gifDiv.append(p);
 
 				gifDiv.append(athleteImage);
 
 				$("#gifs-appear-here").prepend(gifDiv);
 
-				
-	}			
+
+	}
 
 			}
-		
+
 
 		//===================================================================================
 		//Pausing and Stoping Gifs
@@ -92,12 +92,12 @@ $("document").on("click", "button", function() {
 
 			if (state === "still") {
 				$(this).attr("src", $(this).attr("data-animate"));
-				$(this).attr("data-state", "animate");	
+				$(this).attr("data-state", "animate");
 			} 	else {
 				$(this).attr("src", $(this).attr("data-still"));
 				$(this).attr("data-state", "still");
 			}
 		});
-	
+
 	});
 });
