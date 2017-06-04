@@ -6,7 +6,7 @@ var addButtons = function() {
     $('#buttonbar').empty(); // empty the bar on add button rather than on click.
 	for (var i=0; i<topics.length; i++) {
 
-		var button = $('<button>');
+		var button = $('<button class = newButton>');
 			button.attr("data-person", topics[i]);
 			button.html(topics[i]);
 			console.log(topics[i]);
@@ -19,6 +19,7 @@ addButtons(); //generate buttons dynamically from the start
 
 $('#search').on('click', function(event) {
 	event.preventDefault()
+
 
 
 	var userInput = $('#searchbar').val();
@@ -34,8 +35,9 @@ $('#search').on('click', function(event) {
 });
 
 
+
 //Pulls from Giphy API to prepend 10 Gifs====================================================
-$(document).on("click", "button", function() {
+$(document).on("click", ".newButton", "#search", function() {
 
 	var athlete = $(this).attr("data-person");
 	console.log(athlete);
